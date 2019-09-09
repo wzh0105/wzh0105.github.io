@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="MySQL,Linux,">
 
 
 
@@ -79,19 +79,29 @@
 
 
 
-<meta name="description" content="一、写在前面由于linux的核心思想是“一切皆文件”，所以我们通过拷贝所有系统文件的方式来备份及恢复系统。我的Ubuntu系统通过UEFI的方式启动，如果不清楚启动方式请自行查询UEFI+GPT和BIOS+MBR两种启动方式。 二、准备工作1. U盘（4G以上）一个，请提前备份好文件。2. 软件：UltraISO（软碟通），用于烧录系统3. ubuntu16.04镜像4. 移动硬盘（如果系统备份文">
+<meta name="description" content="前几天在测试主从服务器Mysql同步时遇到了从数据库显示Slave_IO_Running：Connecting； Slave_SQL_Running：Yes的问题。 下面列举几种可能的错误原因：1.网络不通2.账户密码错误3.防火墙4.mysql配置文件问题5.连接服务器时语法6.主服务器mysql权限 我的服务器ip：主服务器ubuntu：192.168.16.105从服务器ubuntu：192">
+<meta name="keywords" content="MySQL,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04迁移系统（系统备份与还原），亲测可行">
-<meta property="og:url" content="http://yoursite.com/2019/09/08/Ubuntu16-04迁移系统（系统备份与还原），亲测可行/index.html">
+<meta property="og:title" content="Mysql主从同步时Slave_IO_Running：Connecting ; Slave_SQL_Running：Yes的情况故障排除">
+<meta property="og:url" content="http://yoursite.com/2019/09/08/Mysql主从同步时Slave-IO-Running：Connecting-Slave-SQL-Running：Yes的情况故障排除/index.html">
 <meta property="og:site_name" content="Zh&#39;Blog">
-<meta property="og:description" content="一、写在前面由于linux的核心思想是“一切皆文件”，所以我们通过拷贝所有系统文件的方式来备份及恢复系统。我的Ubuntu系统通过UEFI的方式启动，如果不清楚启动方式请自行查询UEFI+GPT和BIOS+MBR两种启动方式。 二、准备工作1. U盘（4G以上）一个，请提前备份好文件。2. 软件：UltraISO（软碟通），用于烧录系统3. ubuntu16.04镜像4. 移动硬盘（如果系统备份文">
+<meta property="og:description" content="前几天在测试主从服务器Mysql同步时遇到了从数据库显示Slave_IO_Running：Connecting； Slave_SQL_Running：Yes的问题。 下面列举几种可能的错误原因：1.网络不通2.账户密码错误3.防火墙4.mysql配置文件问题5.连接服务器时语法6.主服务器mysql权限 我的服务器ip：主服务器ubuntu：192.168.16.105从服务器ubuntu：192">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190830210806445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-09-08T11:26:43.287Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019020113181166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201125544181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201130230965.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201130539272.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201132816343.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201132327485.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201132535233.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201134138537.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201133319766.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201134654975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-09-09T04:42:01.843Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu16.04迁移系统（系统备份与还原），亲测可行">
-<meta name="twitter:description" content="一、写在前面由于linux的核心思想是“一切皆文件”，所以我们通过拷贝所有系统文件的方式来备份及恢复系统。我的Ubuntu系统通过UEFI的方式启动，如果不清楚启动方式请自行查询UEFI+GPT和BIOS+MBR两种启动方式。 二、准备工作1. U盘（4G以上）一个，请提前备份好文件。2. 软件：UltraISO（软碟通），用于烧录系统3. ubuntu16.04镜像4. 移动硬盘（如果系统备份文">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190830210806445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="Mysql主从同步时Slave_IO_Running：Connecting ; Slave_SQL_Running：Yes的情况故障排除">
+<meta name="twitter:description" content="前几天在测试主从服务器Mysql同步时遇到了从数据库显示Slave_IO_Running：Connecting； Slave_SQL_Running：Yes的问题。 下面列举几种可能的错误原因：1.网络不通2.账户密码错误3.防火墙4.mysql配置文件问题5.连接服务器时语法6.主服务器mysql权限 我的服务器ip：主服务器ubuntu：192.168.16.105从服务器ubuntu：192">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019020113181166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70">
 
 
 
@@ -121,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/08/Ubuntu16-04迁移系统（系统备份与还原），亲测可行/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/08/Mysql主从同步时Slave-IO-Running：Connecting-Slave-SQL-Running：Yes的情况故障排除/">
 
 
 
 
 
-  <title>Ubuntu16.04迁移系统（系统备份与还原），亲测可行 | Zh'Blog</title>
+  <title>Mysql主从同步时Slave_IO_Running：Connecting ; Slave_SQL_Running：Yes的情况故障排除 | Zh'Blog</title>
   
 
 
@@ -264,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/Ubuntu16-04迁移系统（系统备份与还原），亲测可行/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/Mysql主从同步时Slave-IO-Running：Connecting-Slave-SQL-Running：Yes的情况故障排除/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王志恒">
@@ -281,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu16.04迁移系统（系统备份与还原），亲测可行</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql主从同步时Slave_IO_Running：Connecting ; Slave_SQL_Running：Yes的情况故障排除</h1>
         
 
         <div class="post-meta">
@@ -293,7 +303,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T19:26:21+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T11:31:03+08:00">
                 2019-09-08
               </time>
             
@@ -303,6 +313,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySql/" itemprop="url" rel="index">
+                    <span itemprop="name">MySql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -331,16 +363,12 @@
       
 
       
-        <h2 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h2><p>由于linux的核心思想是“一切皆文件”，所以我们通过拷贝所有系统文件的方式来备份及恢复系统。我的Ubuntu系统通过UEFI的方式启动，如果不清楚启动方式请自行查询UEFI+GPT和BIOS+MBR两种启动方式。</p>
-<h2 id="二、准备工作"><a href="#二、准备工作" class="headerlink" title="二、准备工作"></a>二、准备工作</h2><p><strong>1.</strong> U盘（4G以上）一个，请提前备份好文件。<br><strong>2.</strong> 软件：UltraISO（软碟通），用于烧录系统<br><strong>3.</strong> ubuntu16.04镜像<br><strong>4.</strong> 移动硬盘（如果系统备份文件过大需要移动硬盘存储备份文件）</p>
-<h2 id="三、在windows下通过UltraISO（软碟通）制作live-usb（即ubuntu启动盘）"><a href="#三、在windows下通过UltraISO（软碟通）制作live-usb（即ubuntu启动盘）" class="headerlink" title="三、在windows下通过UltraISO（软碟通）制作live usb（即ubuntu启动盘）"></a>三、在windows下通过UltraISO（软碟通）制作live usb（即ubuntu启动盘）</h2><p><strong>1.</strong> 点击图中按钮，选择镜像<br><img src="https://img-blog.csdnimg.cn/20190830210806445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.</strong> 启动-&gt;写入硬盘映像-&gt;便捷启动-&gt;写入新的驱动器引导扇区-&gt;Syslinux，成功后点击写入，等待完成。至此live usb制作完成。</p>
-<h2 id="四、备份系统"><a href="#四、备份系统" class="headerlink" title="四、备份系统"></a>四、备份系统</h2><p><strong>1.</strong> 开终端，cd / 进入到根目录。<br><strong>2.</strong> 切换到root用户：sudo su 输入密码。<br><strong>3.</strong> <code>tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys --exclude=/media /</code><br>这里排除了不需要备份的proc、lost+found、mnt、sys、media等目录。备份完成后会有提示：从上次错误的地方……（记不清了），不管它。打包完成后在根目录下会出现backup.tgz文件。此文件会比较大，将此文件备份到移动硬盘或U盘中，但FAT32格式的u盘不支持4G以上大文件。</p>
-<h2 id="五、开始迁移"><a href="#五、开始迁移" class="headerlink" title="五、开始迁移"></a>五、开始迁移</h2><p><strong>1.</strong> 换到新电脑（或新硬盘），插入u盘，开机通过F2设置uefi启动方式、u盘启动或F12选择U盘启动（不通品牌电脑按键不同），进入后选择安装ubuntu系统。等待新系统安装完成。<br><strong>2.</strong> 重启，依旧选择u盘启动，进入后选择 <strong>try ubuntu without install</strong>，进入U盘中的ubuntu系统。<br><strong>3.</strong> sudo su切换到root用户（未设置密码请先设置密码）<br><strong>4.</strong> 查看u盘和装ubuntu系统的盘所在目录：可以在左侧docker栏看到磁盘标志，不需要手动挂载，点一下图标即可自动挂载u盘和系统硬盘。<code>cd /media</code> ls查看u盘和硬盘挂载的目录。比如我的u盘挂载点是<code>/media/cdrom</code> ，系统盘挂载点是<code>/media/ubuntu/46eb-38jk-fadf-hjfh-adjf</code><br><strong>4.</strong> 接下来备份两个重要的文件到u盘里。<br><strong>5.</strong> 首先给u盘加入写权限：<code>mount -o remount rw /media/cdrom(换成你的路径)</code><br><strong>6.</strong> 执行<code>cp /etc/fstab /media/cdrom</code>和<code>cp /boot/grub.cfg /media/cdrom</code> 将fstab和grub.cfg文件备份到u盘中。<br><strong>7.</strong> 进入系统盘路径：<code>cd /media/ubuntu/46eb-38jk-fadf-hjfh-adjf</code>    ls发现这里是新装的ubuntu系统的完整文件。执行<code>rm -rf ./*</code>删除所有目录。<br><strong>8.</strong> 插上移动硬盘将备份文件backup.tgz拷到此目录下。比如我的是：<code>cp media/Toshiba/backup.tgz ./</code>然后解压文件：<code>tar xvpfz backup.tgz</code>经过漫长等待，文件解压完毕。然后重建没有备份的文件：<code>mkdir proc lost+found mnt sys media</code><br><strong>9.</strong> 还原与引导有关的两个文件(替换为你自己的u盘目录)：<br><code>cp /media/cdrom/fstab ./etc</code> <code>cp/media/cdrom/grub.cfg ./boot</code><br><strong>10.</strong> 拔掉u盘硬盘，reboot重启</p>
-<h2 id="五、无法进入系统"><a href="#五、无法进入系统" class="headerlink" title="五、无法进入系统"></a>五、无法进入系统</h2><p>你以为这就结束了吗，不不，这时候很可能无法进入系统，引导会出问题，接下来进行修复，使用ubuntu官方修复工具。我们需要再次插上u盘进入live usb，选择 <strong>try ubuntu without install</strong>，进入后<strong>连接网络</strong>，打开终端依次输入：<br><code>sudo add-apt-repository ppa:yannubuntu/boot-repair</code> 添加源</p>
-<pre><code>sudo apt-get update</code></pre><p><code>sudo apt-get install -y boot-repair</code> 安装修复工具 </p>
-<pre><code>boot-repair</code></pre><p>出现启动界面后点击<strong>Recommended repair</strong>，按照它的提示进行，期间会提示卸载grub引导，都选择是，会要求在终端中输入一系列命令，输入后继续，按照提示进行，修复完成后重启电脑，拔掉u盘，成功进入系统，你会发现系统恢复到了备份时的样子。</p>
-<p>至此，恢复系统完成。</p>
-<p>此博文完全凭记忆写成，如有错误欢迎指出，谢谢！</p>
+        <p>前几天在测试主从服务器Mysql同步时遇到了从数据库显示<strong>Slave_IO_Running：Connecting； Slave_SQL_Running：Yes</strong>的问题。<br><img src="https://img-blog.csdnimg.cn/2019020113181166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>下面列举几种可能的错误原因：<br><font face="微软雅黑" size="5"><br><strong>1.网络不通<br>2.账户密码错误<br>3.防火墙<br>4.mysql配置文件问题<br>5.连接服务器时语法<br>6.主服务器mysql权限</strong></font></p>
+<p>我的服务器ip：<br>主服务器ubuntu：192.168.16.105<br>从服务器ubuntu：192.168.16.115</p>
+<p>逐项排除：<br><strong>1</strong>：因为从服务器是虚拟机，网卡选择了<strong>桥接模式</strong>，ip地址确认在同一网段中，且互ping能通，排除网络问题。<br><strong>2</strong>：主服务器创建了账号slave密码slave的权限账号，在主服务器可以登录slave帐号，排除帐号密码问题。<br><strong>3</strong>：终端输入    <code>sudo ufw disable</code> 关闭防火墙，  <code>sudo ufw status</code>查看防火墙，确认已关闭，排除防火墙原因。（<code>sudo ufw enable</code>打开防火墙）<br><img src="https://img-blog.csdnimg.cn/20190201125544181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>4：配置文件</strong><br>（1）查看主服务器配置文件：<code>sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</code>，看第83行：确认log_bin和server-id已经取消注释，设置无错误。<br><img src="https://img-blog.csdnimg.cn/20190201130230965.png" alt="在这里插入图片描述"><br>（2）查看从服务器：<br><img src="https://img-blog.csdnimg.cn/20190201130539272.png" alt="在这里插入图片描述"><br>此处server-id只需要与主服务器不同即可，我设置为ip的末尾数字115。确认配置无错误，排除。</p>
+<p><strong>5.语法：</strong><br>（1）查看主服务器二进制日志信息<code>show master status;</code><br><img src="https://img-blog.csdnimg.cn/20190201132816343.png" alt="在这里插入图片描述"><br>（2）设置从服务器链接到master主服务器，确认语句无错误，排除。<br><strong>注：</strong><br><em>master_host：主服务器Ubuntu的ip地址<br>master_log_file: 前面查询到的主服务器日志文件名<br>master_log_pos: 前面查询到的主服务器日志文件位置</em></p>
+<pre><code>change master to master_host=&apos;192.168.16.105&apos;, master_user=&apos;slave&apos;, master_password=&apos;slave&apos;,master_log_file=&apos;mysql-bin.000011&apos;, master_log_pos=154;</code></pre><p><img src="https://img-blog.csdnimg.cn/20190201132327485.png" alt="在这里插入图片描述"><br><strong>6.权限：</strong><br>(1)主服务器查看slave帐号，已设置登录ip为%<br><img src="https://img-blog.csdnimg.cn/20190201132535233.png" alt="在这里插入图片描述"><br>(2)在从服务器上登录主服务器slave帐号测试：<br><img src="https://img-blog.csdnimg.cn/20190201134138537.png" alt="在这里插入图片描述"><br>无法登录主服务器！打开主服务器配置文件发现43行有一条绑定主机ip的语句，问题出在这里！！！给它注释掉！保存退出。重启主服务器数据库：<code>sudo service mysql restart</code><br><img src="https://img-blog.csdnimg.cn/20190201133319766.png" alt="在这里插入图片描述"><br>(3)重新测试从服务器上登录主服务器slave帐号：登录成功！<br>(4)重新进入从服务器链接master主服务器，<code>start slave</code>开启主从同步，输入<code>show slave status \G</code>查看从服务器状态，若开启不成功先<code>stop slave</code>，再<code>start slave</code>，可以看到Slave_IO_Runninghe和Slave_SQL_Running状态都是Yes，同步成功。<br><img src="https://img-blog.csdnimg.cn/20190201134654975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21ieXRlcw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
       
     </div>
@@ -356,6 +384,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
 
       
       
@@ -365,15 +401,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/08/使用hexo-github搭建免费的个人博客及主题更换，添加博客特效/" rel="next" title="使用hexo+github搭建免费的个人博客及主题更换，添加博客特效">
-                <i class="fa fa-chevron-left"></i> 使用hexo+github搭建免费的个人博客及主题更换，添加博客特效
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/08/使用hexo-github搭建免费的个人博客及主题更换，添加博客特效/" rel="prev" title="使用hexo+github搭建免费的个人博客及主题更换，添加博客特效">
+                使用hexo+github搭建免费的个人博客及主题更换，添加博客特效 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -425,17 +461,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,22 +540,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、写在前面"><span class="nav-number">1.</span> <span class="nav-text">一、写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、准备工作"><span class="nav-number">2.</span> <span class="nav-text">二、准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、在windows下通过UltraISO（软碟通）制作live-usb（即ubuntu启动盘）"><span class="nav-number">3.</span> <span class="nav-text">三、在windows下通过UltraISO（软碟通）制作live usb（即ubuntu启动盘）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、备份系统"><span class="nav-number">4.</span> <span class="nav-text">四、备份系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、开始迁移"><span class="nav-number">5.</span> <span class="nav-text">五、开始迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、无法进入系统"><span class="nav-number">6.</span> <span class="nav-text">五、无法进入系统</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
